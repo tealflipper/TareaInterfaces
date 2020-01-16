@@ -1,31 +1,62 @@
-<!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h3>Ej. 5</h3>
+    <form>
+      Dame una lista de números separados con commas<br />
+      <input type="text" id="myTextarea" style="width: 500px" /><br />
+      <input type="button" value="OK" onclick="miFuncion();" /><br /><br />
+      Media:
+      <input type="text" id="mew" style="width: 10em" readonly /><br />
+      Desviación estándar:
+      <input type="text" id="sigma" style="width: 10em" readonly /><br />
+    </form>
+    <script>
+      //takes an array of number to find the mean of the list
+      function mean(numArr) {
+        if (numArr.length == 0) return null;
+        var sum = 0;
+        for (i in numArr) {
+          sum += numArr[i];
+        }
+        return sum / numArr.length;
+      }
 
-<form id="frm1" action="myFunction()">
-  a00: <input type="text" name="00" rows="1" cols="10" value="0" > a01: <input type="text" name="01" value="0"> a02: <input type="text" name="02" value="0"> <br>
-  a10: <input type="text" name="10" value="0"> a11: <input type="text" name="11" value="0"> a12: <input type="text" name="12" value="0"> <br>
-  a20: <input type="text" name="20" value="0"> a21: <input type="text" name="21" value="0"> a02: <input type="text" name="22" value="0"> <br>  
-  <input type="submit" value="ok">
-</form> 
+      function sd(numArr) {
+        if (numArr.length == 0) return null;
+        var mew = mean(numArr);
+        var sqDif = numArr; //squared difference
+        var popMean = 0;
+        var sigma = 0;
+        var variance = 0; //aux for summations
 
-<p>Click "Try it" to display the value of each element in the form.</p>
-
-<button onclick="myFunction()">Try it</button>
-
-<p id="demo"></p>
-
-<script>
-function myFunction() {
-  var x = document.getElementById("frm1");
-  var text = "";
-  var i;
-  for (i = 0; i < x.length ;i++) {
-    text += x.elements[i].value + "<br>";
-  }
-  document.getElementById("demo").innerHTML = text;
-}
-</script>
-
-</body>
+        //find the squared differences
+        for (i in sqDif) {
+          sqDif[i] = sqDif[i] - mew;
+          sqDif[i] = Math.pow(sqDif[i], 2);
+        }
+        for (i in sqDif) {
+          variance += sqDif[i];
+        }
+        variance /= sqDif.length;
+        sigma = Math.sqrt(variance);
+        return sigma;
+      }
+      function miFuncion() {
+        var string = document.getElementById("myTextarea").value;
+        var numArr = [];
+        numArr = string.split(",");
+        for (i in numArr) {
+          numArr[i] = parseInt(numArr[i]);
+        }
+        console.log(numArr);
+        var mew = mean(numArr);
+        var sigma = sd(numArr);
+        document.getElementById("mew").value = mew;
+        document.getElementById("sigma").value = sigma;
+      }
+    </script>
+  </body>
 </html>

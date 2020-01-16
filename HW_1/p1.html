@@ -4,29 +4,43 @@
   </head>
   <body>
     <h3>Ej. 1</h3>
-    Dame la lista de números separados con espacios<br/>
-    <textarea id="myTextarea" rows="1" cols="30"></textarea>
-    <br />
-    <button type="button" onclick="miFuncion()">OK</button>
+    <form>
+      Dame una lista de números separados con commas<br />
+      <input type="text" id="myTextarea" style="width: 500px" /><br />
+      <input type="button" value="OK" onclick="miFuncion();" /><br /><br />
+      Maximo:
+      <input type="text" id="Maximo" style="width: 10em" readonly /><br />
+      Minimo:
+      <input type="text" id="Minimo" style="width: 10em" readonly /><br />
+      cantidad de numeros positivos:
+      <input type="text" id="pos" style="width: 10em" readonly /><br />
+      cantidad de numeros negativos:
+      <input type="text" id="neg" style="width: 10em" readonly /><br />
+      cantidad de ceros:
+      <input type="text" id="zeros" style="width: 10em" readonly /><br />
+    </form>
     <script>
       function miFuncion() {
         var string = document.getElementById("myTextarea").value;
-        var intArr =[];
-        intArr=string.split(" ");
+        var intArr = [];
+        intArr = string.split(",");
         console.log(string);
-        var positive=0, zeros=0,negative=0;
-        for(i in intArr){
-            intArr[i]=parseInt(intArr[i]);
-            if(intArr[i]>0) positive++;
-            else if (intArr[i]<0) negative++;
-            else zeros++;
+        var positive = 0,
+          zeros = 0,
+          negative = 0;
+        for (i in intArr) {
+          intArr[i] = parseInt(intArr[i]);
+          if (intArr[i] > 0) positive++;
+          else if (intArr[i] < 0) negative++;
+          else zeros++;
         }
-        var min = Math.min( ...intArr ),max = Math.max( ...intArr );
-        document.write("Maximo: ",max,"<br>");
-        document.write("Minimo: ",min,"<br>");
-        document.write("cantidad de numeros positivos: ",positive,"<br>");
-        document.write("cantidad de numeros negativos: ",negative,"<br>");
-        document.write("cantidad de ceros: ",zeros,"<br>");
+        var min = Math.min(...intArr),
+          max = Math.max(...intArr);
+        document.getElementById("Maximo").value = max;
+        document.getElementById("Minimo").value = min;
+        document.getElementById("pos").value = positive;
+        document.getElementById("neg").value = negative;
+        document.getElementById("zeros").value = zeros;
         console.log(intArr);
       }
     </script>

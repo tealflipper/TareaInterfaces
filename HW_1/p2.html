@@ -1,30 +1,39 @@
 <html>
-    <head>
-      <title>Tarea 1</title>
-    </head>
-    <body>
-      <h3>Ej. 2</h3>
-      <img src="summation.png" alt=summation">
-      <br>Dame el termino n<br/>
-      <textarea id="terminoN" rows="1" cols="10"></textarea>
-      <br>
-      <br>Dame la base x<br/>
-      <textarea id="baseX" rows="1" cols="10"></textarea>
-      <br />
-      <button type="button" onclick="partialSum()">OK</button>
-      <script>
-        function partialSum() {
-          var n = document.getElementById("terminoN").value;
-          var x =  document.getElementById("baseX").value;
-          var sum=0;
-          console.log(x);
-          console.log(n);
-          for(i=0; i<=n; i++){
-              sum+=Math.pow(x,i);
-          }
-          document.write("Suma: ",sum,"<br>");
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h3>Ej. 2</h3>
+    <form>
+      <img src="summation.png" alt=summation"><br />
+      Termino n:
+      <input type="text" id="terminoN" style="width: 30px" value="0" /><br />
+      Base x:
+      <input type="text" id="baseX" style="width: 52px" value="1" /><br />
+      <input type="button" value="OK" onclick="partialSum();" /><br /><br />
+      Resultado:
+      <input
+        type="text"
+        id="res"
+        name="matb"
+        style="width: 40px"
+        value="1"
+        readonly
+      />
+    </form>
+
+    <script>
+      function partialSum() {
+        var n = document.getElementById("terminoN").value;
+        var x = document.getElementById("baseX").value;
+        var sum = 0;
+        console.log(x);
+        console.log(n);
+        for (i = 0; i <= n; i++) {
+          sum += Math.pow(x, i);
         }
-      </script>
-    </body>
-  </html>
-  
+        document.getElementById("res").value = sum;
+      }
+    </script>
+  </body>
+</html>
