@@ -1,0 +1,30 @@
+<html>
+    <head>
+      <title>Tarea 1</title>
+    </head>
+    <body>
+      <h3>Ej. 2</h3>
+      <img src="summation.png" alt=summation">
+      <br>Dame el termino n<br/>
+      <textarea id="terminoN" rows="1" cols="10"></textarea>
+      <br>
+      <br>Dame la base x<br/>
+      <textarea id="baseX" rows="1" cols="10"></textarea>
+      <br />
+      <button type="button" onclick="partialSum()">OK</button>
+      <script>
+        function partialSum() {
+          var n = document.getElementById("terminoN").value;
+          var x =  document.getElementById("baseX").value;
+          var sum=0;
+          console.log(x);
+          console.log(n);
+          for(i=0; i<=n; i++){
+              sum+=Math.pow(x,i);
+          }
+          document.write("Suma: ",sum,"<br>");
+        }
+      </script>
+    </body>
+  </html>
+  

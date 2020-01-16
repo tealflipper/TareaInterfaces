@@ -1,0 +1,30 @@
+<html>
+    <head>
+      <title>Tarea 1</title>
+    </head>
+    <body>
+      <h3>Ej. 3</h3>
+      <br>Dame el termino n<br/>
+      <textarea id="terminoN" rows="1" cols="10"></textarea>
+      <button type="button" onclick="pyramid()">OK</button>
+      <script>
+        function pyramid() {
+          var n = document.getElementById("terminoN").value;
+          console.log(n);
+          for(i=0; i<=n; i++){
+              if (i>0){
+                  for(j=0; j<n-i; j++){
+                      document.write('&nbsp;');
+                  } 
+                  for(j=0; j<i; j++){
+                      document.write("*");
+                  }   
+                  document.write("<br>");
+              }
+          }
+         
+        }
+      </script>
+    </body>
+  </html>
+  

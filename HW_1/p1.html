@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h3>Ej. 1</h3>
+    Dame la lista de números separados con espacios<br/>
+    <textarea id="myTextarea" rows="1" cols="30"></textarea>
+    <br />
+    <button type="button" onclick="miFuncion()">OK</button>
+    <script>
+      function miFuncion() {
+        var string = document.getElementById("myTextarea").value;
+        var intArr =[];
+        intArr=string.split(" ");
+        console.log(string);
+        var positive=0, zeros=0,negative=0;
+        for(i in intArr){
+            intArr[i]=parseInt(intArr[i]);
+            if(intArr[i]>0) positive++;
+            else if (intArr[i]<0) negative++;
+            else zeros++;
+        }
+        var min = Math.min( ...intArr ),max = Math.max( ...intArr );
+        document.write("Maximo: ",max,"<br>");
+        document.write("Minimo: ",min,"<br>");
+        document.write("cantidad de numeros positivos: ",positive,"<br>");
+        document.write("cantidad de numeros negativos: ",negative,"<br>");
+        document.write("cantidad de ceros: ",zeros,"<br>");
+        console.log(intArr);
+      }
+    </script>
+  </body>
+</html>
