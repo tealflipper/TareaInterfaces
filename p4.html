@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Matrix multiply</title>
+    </head>
+
+    <body>
+      Ingrese la Matriz de la siguiente forma: [[a00,a01,a02],[a10,a11,a12],[a20,a21,a22]]
+        <form>
+            Matriz A: <input type="text" id="m1" name="mata" style="width: 500px" value="[[0,0,0],[0,0,0],[0,0,0]]"><br>
+            Matrix B: <input type="text" id="m2" name="matb" style="width: 500px" value="[[0,0,0],[0,0,0],[0,0,0]]"><br>
+            <input type="button" value="sumar(+)" onclick="sum();"><br>
+            <input type="button" value="multiplicar(*)" onclick="mul();"><br><br>
+            -Result: <input type="text" id="res" name="matb" style="width: 500px" value="[[0,0,0],[0,0,0],[0,0,0]]" readonly>
+        </form>
+    </body>
+    <script type="text/javascript">
+      function sum(){
+          var matA = document.getElementById("m1").value;
+          matA=JSON.parse(matA);
+          var matB = document.getElementById("m2").value;
+          var matC=[[0,0,0],[0,0,0],[0,0,0]];
+          matB=JSON.parse(matB);
+          for (i in matA){
+            for(j in matA[i]){
+              console.log("matriz: ",matA[i][j]);
+              matC[i][j]=matA[i][j]+matB[i][j];
+            }
+          }
+          document.getElementById("res").value=JSON.stringify(matC);
+      }
+      function mul(){
+          var matA = document.getElementById("m1").value;
+          matA=JSON.parse(matA);
+          var matB = document.getElementById("m2").value;
+          matB=JSON.parse(matB);
+          var matC=[[0,0,0],[0,0,0],[0,0,0]];
+          for (i in matA){
+            for(j in matA[i]){
+              console.log("matriz: ",matA[i][j]);
+              var sum=0;
+              for(k in matC[i]) sum+=matA[i][k]*matB[k][j];
+              matC[i][j]=sum;
+              sum=0;
+            }
+          }
+          document.getElementById("res").value=JSON.stringify(matC);
+      }
+  </script>
+</html>
