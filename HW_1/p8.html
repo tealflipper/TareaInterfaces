@@ -60,8 +60,8 @@
         console.log(ti, di, tu);
 
         var pag = 0; //pago
-        var im=0 //impuesto
-        var total=0;
+        var im = 0; //impuesto
+        var total = 0;
         //calcula el pago por llamada segun tiempo
         if (ti < 5) pag = ti;
         else if (ti < 8) pag = (ti - 5) * 0.8 + 5;
@@ -69,15 +69,15 @@
         else pag = (ti - 10) * 0.5 + 8.8;
 
         //se calcula el impuesto
-        if(di=='DOM') im =pag*0.05;
-        else if(tu=='M') im=pag*0.15;
-        else im=pag*0.10;
+        if (di == "DOM") im = pag * 0.05;
+        else if (tu == "M") im = pag * 0.15;
+        else im = pag * 0.1;
 
-        total=parseFloat(pag)+parseFloat(im);
+        total = parseFloat(pag) + parseFloat(im);
 
-        document.getElementById('pag').value=pag;
-        document.getElementById('im').value=im;
-        document.getElementById('total').value=total;
+        document.getElementById("pag").value = pag;
+        document.getElementById("im").value = im;
+        document.getElementById("total").value = total;
       }
     </script>
   </body>

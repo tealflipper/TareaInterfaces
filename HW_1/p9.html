@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h3>Ej. 9</h3>
+    <form>
+      Número de ventas:
+      <input
+        type="number"
+        id="amount"
+        name="sm"
+        min="1"
+        style="width: 60px"
+        placeholder="0"
+      /><br />
+      <input type="button" value="empezar" onclick="init();" /><br />
+      ventas restantes:
+      <input
+        type="number"
+        id="ventasRest"
+        min="0"
+        style="width: 60px"
+        value="0"
+        readonly
+      /><br /><br />
+
+      cantidad de venta:
+      <input
+        type="number"
+        id="amountSold"
+        name="sa"
+        min="1"
+        style="width: 60px"
+        placeholder="0.0"
+      /><br />
+      <input type="button" value="agregar" onclick="myFunc();" /><br /><br />
+
+      mayores a $1000:<input
+        type="text"
+        id="A"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br />
+      total de categoria:<input
+        type="text"
+        id="totA"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br /><br />
+      mayores a $500 y<br />
+      menores a $1000:<input
+        type="text"
+        id="B"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br />
+      total de categoria:<input
+        type="text"
+        id="totB"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br /><br />
+      menor igual a $500:<input
+        type="text"
+        id="C"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br />
+      total de categoria:<input
+        type="text"
+        id="totC"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br /><br />
+      ventas:<input
+        type="text"
+        id="ventas"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br />
+      total global:<input
+        type="text"
+        id="totalVentas"
+        style="width: 10em"
+        value="0"
+        readonly
+      /><br /><br />
+    </form>
+    <script>
+      var N;
+      var A, B, C; //>1000, 1000>x>500, x<500
+      var t1, t2, t3, tt;
+      var CV; //contador de ventas
+      function init() {
+        N = document.getElementById("amount").value;
+        A = 0;
+        B = 0;
+        C = 0;
+        t1 = 0;
+        t2 = 0;
+        t3 = 0;
+        tt = 0;
+        CV=0;
+        document.getElementById("ventasRest").value=N-CV;
+      }
+      function myFunc() {
+        var v;
+        if(CV<N){
+          v=parseFloat(document.getElementById("amountSold").value);
+          if (v>1000){
+            A++;
+            t1+=parseFloat(v);
+          }
+          else if(v>500){
+            B++;
+            t2+=parseFloat(v);
+          }
+          else{
+            C++;
+            t3+=parseFloat(v);
+          }
+          tt+=parseFloat(v);
+          CV++;
+
+
+          document.getElementById("ventasRest").value=N-CV;
+
+          document.getElementById("A").value=A;
+          document.getElementById("totA").value=t1;
+          document.getElementById("B").value=B;
+          document.getElementById("totB").value=t2;
+          document.getElementById("C").value=C;
+          document.getElementById("totC").value=t3;
+
+          document.getElementById("ventas").value=CV;
+          document.getElementById("totalVentas").value=tt;
+
+        }
+      }
+    </script>
+  </body>
+</html>
