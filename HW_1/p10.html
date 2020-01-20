@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h3>Ej. 10</h3>
+    <form>
+      valor de n
+      <input type="number" id="n" style="width: 50px" placeholder="1" /><br />
+      valor de x
+      <input type="number" id="x" style="width: 50px" placeholder="0" /><br />
+      <input type="button" value="crear serie" onclick="miFuncion();" /><br />
+      <output name="result" id="res" for="n x" value="e"></output>
+    </form>
+    <script>
+      function miFuncion() {
+        var x = document.getElementById("x").value;
+        var n = document.getElementById("n").value;
+        if (n == 0) return;
+        var string = "e<sup>x</sup>=e" + "<sup>" + x + "</sup>=1";
+        string += n == 1 ? "" : " + ";
+        if (n >= 2) string += "<sup>" + x + "</sup>" + "&frasl;<sub>1!</sub>";
+        string += n == 2 ? "" : " + ";
+        for (let i = 2; i < n; i++) {
+          string +=
+            "<sup>" +
+            x +
+            "<sup>" +
+            i +
+            "</sup>" +
+            "</sup>" +
+            "&frasl;<sub>" +
+            i +
+            "!</sub>";
+          string += i < n - 1 ? " + " : " + . . .,";
+        }
+        document.getElementById("res").innerHTML = "<h2>" + string + "</h2>";
+      }
+    </script>
+  </body>
+</html>

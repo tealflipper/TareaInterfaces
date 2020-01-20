@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h2>ej. 11</h2>
+    <form>
+      Cordenadas (Para polares se trabaja con grados): <br />
+      <input
+        type="number"
+        id="x"
+        style="width: 100px"
+        placeholder="valor de x o r;"
+      />&nbsp;
+      <input
+        type="number"
+        id="y"
+        style="width: 100px"
+        placeholder="valor de y o &theta;"
+      />&nbsp;<br/>
+      Convertir a: 
+      <input type="radio" id="cartesian" name="di" value="cartesian" />
+      cartesiana
+      <input type="radio" id="polar" name="di" value="polar" />
+      polar
+      <br />
+      <input type="button" value="convertir" onclick="convert();" /><br /><br/>
+      <output name="result" id="res" for="x y" value=></output>
+    </form>
+    <script>
+      var pi=Math.PI;
+      class Point {
+        constructor(x_val, y_val) {
+          this.a = x_val;
+          this.b = y_val;
+        }
+        to_string_cartesianas(conversion) {
+          let x = this.a * Math.cos(this.b*(pi/180));
+          let y = this.a * Math.sin(this.b*(pi/180));
+          let string = "(" + x + "," + y + ")";
+          return string;
+        }
+        to_string_polares() {
+          let r = Math.sqrt(this.a ** 2 + this.b ** 2);
+          let theta = Math.atan(this.b / this.a);
+          
+          let string = "(" + r + "," + theta*(180/pi)+ "°)";
+          return string;
+        }
+      }
+
+      function convert() {
+        let a = document.getElementById("x").value;
+        let b = document.getElementById("y").value;
+        console.log(a,b);
+        let type = "";
+        let tmp = document.getElementsByName("di");
+        for (i = 0; i < tmp.length; i++) {
+          if (tmp[i].checked) type = tmp[i].value;
+        }
+        let myPoint = new Point(a, b);
+        if(type=="polar") document.getElementById("res").value=myPoint.to_string_polares();
+        else document.getElementById("res").value=myPoint.to_string_cartesianas();
+      }
+    </script>
+  </body>
+</html>

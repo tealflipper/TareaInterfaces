@@ -108,41 +108,37 @@
         t2 = 0;
         t3 = 0;
         tt = 0;
-        CV=0;
-        document.getElementById("ventasRest").value=N-CV;
+        CV = 0;
+        document.getElementById("ventasRest").value = N - CV;
       }
       function myFunc() {
         var v;
-        if(CV<N){
-          v=parseFloat(document.getElementById("amountSold").value);
-          if (v>1000){
+        if (CV < N) {
+          v = parseFloat(document.getElementById("amountSold").value);
+          if (v > 1000) {
             A++;
-            t1+=parseFloat(v);
-          }
-          else if(v>500){
+            t1 += parseFloat(v);
+          } else if (v > 500) {
             B++;
-            t2+=parseFloat(v);
-          }
-          else{
+            t2 += parseFloat(v);
+          } else {
             C++;
-            t3+=parseFloat(v);
+            t3 += parseFloat(v);
           }
-          tt+=parseFloat(v);
+          tt += parseFloat(v);
           CV++;
 
+          document.getElementById("ventasRest").value = N - CV;
 
-          document.getElementById("ventasRest").value=N-CV;
+          document.getElementById("A").value = A;
+          document.getElementById("totA").value = t1;
+          document.getElementById("B").value = B;
+          document.getElementById("totB").value = t2;
+          document.getElementById("C").value = C;
+          document.getElementById("totC").value = t3;
 
-          document.getElementById("A").value=A;
-          document.getElementById("totA").value=t1;
-          document.getElementById("B").value=B;
-          document.getElementById("totB").value=t2;
-          document.getElementById("C").value=C;
-          document.getElementById("totC").value=t3;
-
-          document.getElementById("ventas").value=CV;
-          document.getElementById("totalVentas").value=tt;
-
+          document.getElementById("ventas").value = CV;
+          document.getElementById("totalVentas").value = tt;
         }
       }
     </script>
