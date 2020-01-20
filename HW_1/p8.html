@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h3>Ej. 8</h3>
+    <form>
+      Tiempo de llamada (minutos):
+      <input
+        type="number"
+        id="ti"
+        name="quantity"
+        min="1"
+        style="width: 60px"
+      /><br />
+
+      Dia de la semana:<br />
+      <input type="radio" id="MS" name="di" value="MS" />
+      Lunes a Sabado
+      <input type="radio" id="Sun" name="di" value="DOM" />
+      Domingo
+      <br />
+
+      Turno:<br />
+      <input type="radio" id="day" name="tu" value="M" />
+      Matutino
+      <input type="radio" id="night" name="tu" value="V" />
+      Vespertino
+      <br />
+
+      <input
+        type="button"
+        value="Calcular pago"
+        onclick="miFuncion();"
+      /><br /><br />
+
+      Pago: &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="text" id="pag" style="width: 150px" readonly /><br />
+      Impuesto: &nbsp;
+      <input type="text" id="im" style="width: 147px" readonly /><br />
+      Total: &nbsp; &nbsp; &nbsp; &nbsp;
+      <input type="text" id="total" style="width: 150px" readonly /><br />
+    </form>
+
+    <script>
+      function miFuncion() {
+        //lee el tiempo, tipo de dia y turno
+        var ti = document.getElementById("ti").value,
+          di,
+          tu;
+        var tmp = document.getElementsByName("di");
+        for (i = 0; i < tmp.length; i++) {
+          if (tmp[i].checked) di = tmp[i].value;
+        }
+        tmp = document.getElementsByName("tu");
+        for (i = 0; i < tmp.length; i++) {
+          if (tmp[i].checked) tu = tmp[i].value;
+        }
+
+        console.log(ti, di, tu);
+
+        var pag = 0; //pago
+        var im=0 //impuesto
+        var total=0;
+        //calcula el pago por llamada segun tiempo
+        if (ti < 5) pag = ti;
+        else if (ti < 8) pag = (ti - 5) * 0.8 + 5;
+        else if (ti <= 10) pag = (ti - 8) * 0.7 + 7.4;
+        else pag = (ti - 10) * 0.5 + 8.8;
+
+        //se calcula el impuesto
+        if(di=='DOM') im =pag*0.05;
+        else if(tu=='M') im=pag*0.15;
+        else im=pag*0.10;
+
+        total=parseFloat(pag)+parseFloat(im);
+
+        document.getElementById('pag').value=pag;
+        document.getElementById('im').value=im;
+        document.getElementById('total').value=total;
+      }
+    </script>
+  </body>
+</html>
