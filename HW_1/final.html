@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tarea 1</title>
+</head>
+
+<body>
+  <h3>Ej. final</h3>
+  <div>
+    Fecha:<br />
+    <form>
+      Día: &nbsp;<input type="number" id="dia" name="dia" style="width: 60px" min="1" max="31" placeholder="22" /><br />
+      Mes:
+      <input type="number" id="mes" name="mes" style="width: 60px" min="1" max="12" placeholder="12" /><br />
+      Año:
+      <input type="number" id="año" name="año" style="width: 60px" min="1900" max="2500" placeholder="1997" /><br />
+      <input type="radio" name="dateType" id="DB" value="extDate" onclick="op='extDate'" />
+      Fecha Extendida<input type="radio" name="dateType" id="DB" value="shortDate" onclick="op='shortDate'" />
+      Fecha abreviada <br />
+
+      <input type="button" name="dateBotton" id="DB" value="agregar Fecha" onclick="myFunct();"
+        style="width: 100px" /><br /><br />
+      <output name="dateAdded" id="dateAdded"></output><br /><br />
+    </form>
+  </div>
+
+  <div>
+    <form>
+      Empleado:<br />
+      Nombre:
+      <input type="text" id="nombreE" name="nomE" style="width: 350px" placeholder="Speedy Gonzales Perez" /><br />
+      Fecha:
+      <input type="text" id="dateE" name="dateE" style="width: 200px" placeholder="22 de diciembre de 1997"
+        readonly /><br />
+      Salario Diario:
+      <input type="number" id="salE" name="salE" style="width: 80px" placeholder="120.29" /><br />
+      <input type="button" name="empBotton" id="EB" value="mostrar empleado" onclick="showEmp();"
+        style="width: 125px" /><br />
+      <output name="salidaEmpleado" id="salidaE"></output><br /><br />
+    </form>
+  </div>
+
+  <div>
+    <form>
+      Ingeniero:<br />
+      Nombre:
+      <input type="text" id="nombreI" name="nomI" style="width: 350px" placeholder="Speedy Gonzales Perez" /><br />
+      Fecha:
+      <input type="text" id="dateI" name="dateI" style="width: 200px" placeholder="22 de diciembre de 1997"
+        readonly /><br />
+      Salario Diario:
+      <input type="number" id="salI" name="salI" style="width: 80px" placeholder="420.69" /><br />
+      Departamento:
+      <input type="text" id="depI" name="depI" style="width: 150px" placeholder="tecnologias" /><br />
+
+      <input type="button" name="ingeBotton" id="DB" value="mostrar ingeniero" onclick="showIng();"
+        style="width: 120px" /><br />
+      <output name="salidaInge" id="salidaI"></output><br /><br />
+    </form>
+  </div>
+
+  <script>
+    let op;
+    let miFecha;
+
+    var meses = {
+      1: "Enero",
+      2: "Febrero",
+      3: "Marzo",
+      4: "Abril",
+      5: "Mayo",
+      6: "Junio",
+      7: "Julio",
+      8: "Agosto",
+      9: "Septiembre",
+      10: "Octubre",
+      11: "Noviembre",
+      12: "Diciembre"
+    };
+
+    class Fecha {
+      constructor(month, day, year) {
+        this.dia = day;
+        this.mes = month;
+        this.año = year;
+      }
+
+      getDia() {
+        return this.dia;
+      }
+      getMes() {
+        return this.mes;
+      }
+      getAño() {
+        return this.año;
+      }
+
+      toStringAbrv() {
+        return this.dia + "/" + this.mes + "/" + this.año;
+      }
+      toStringExt() {
+        return this.dia + " de " + meses[this.mes] + " de " + this.año;
+      }
+    }
+
+    class Empleado {
+      constructor(name, date, salary) {
+        this.nombre = name;
+        this.fecha = date;
+        this.salarioDiario = salary;
+      }
+
+      getQuincena() {
+        return this.salarioDiario * 15;
+      }
+
+      print() {
+        let d =
+          op == "extDate"
+            ? this.fecha.toStringExt()
+            : this.fecha.toStringAbrv();
+        let str =
+          "Nombre: " +
+          this.nombre +
+          "<br>" +
+          "Fecha: " +
+          d +
+          "<br>" +
+          "Salario diario: " +
+          this.salarioDiario +
+          "<br>" +
+          "quincena: " +
+          this.getQuincena() +
+          "<br>";
+        console.log(str);
+        return str;
+      }
+    }
+
+    class Ingeniero extends Empleado {
+      constructor(name, date, salary, depto) {
+        super(name, date, salary);
+        this.departamento = depto;
+      }
+
+      print() {
+        let d =
+          op == "extDate"
+            ? this.fecha.toStringExt()
+            : this.fecha.toStringAbrv();
+        let str =
+          "Nombre: " +
+          this.nombre +
+          "<br>" +
+          "Departamento: " +
+          this.departamento +
+          "<br>" +
+          "Fecha: " +
+          d +
+          "<br>" +
+          "Salario diario: " +
+          this.salarioDiario +
+          "<br>" +
+          "quincena: " +
+          this.getQuincena() +
+          "<br>";
+        console.log(str);
+        return str;
+      }
+    }
+
+    function myFunct() {
+      let day = document.getElementById("dia").value;
+      let month = document.getElementById("mes").value;
+      let year = document.getElementById("año").value;
+      miFecha = new Fecha(month, day, year);
+      if (op == "extDate") {
+        document.getElementById("dateE").value = miFecha.toStringExt();
+        document.getElementById("dateI").value = miFecha.toStringExt();
+      } else {
+        document.getElementById("dateE").value = miFecha.toStringAbrv();
+        document.getElementById("dateI").value = miFecha.toStringAbrv();
+      }
+    }
+
+    function showEmp() {
+      let name = document.getElementById("nombreE").value;
+      let sal = document.getElementById("salE").value;
+
+      let myEmp = new Empleado(name, miFecha, sal);
+      document.getElementById("salidaE").innerHTML = myEmp.print();
+    }
+    function showIng() {
+      let name = document.getElementById("nombreI").value;
+      let sal = document.getElementById("salI").value;
+      let dept = document.getElementById("depI").value;
+
+      let myIng = new Ingeniero(name, miFecha, sal, dept);
+      document.getElementById("salidaI").innerHTML = myIng.print();
+    }
+  </script>
+</body>
+
+</html>

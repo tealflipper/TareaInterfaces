@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tarea 1</title>
+  </head>
+  <body>
+    <h3>Ej. 12</h3>
+
+    <body>
+      Ingrese los numeros complejos como vectores (z=a+ib=a,b):<br/>
+        <form>
+            A: <input type="text" id="a" name="z1" style="width: 60px" placeholder="a,b"><br>
+            B: <input type="text" id="b" name="z1" style="width: 60px" placeholder="c,d"><br>
+            <input type="radio" name="op" id="add" value="+" style="width: 30px"> sumar &nbsp;
+            <input type="radio" name="op" id="sub" value="-" style="width: 30px"> restar &nbsp;
+            <input type="radio" name="op" id="modA" value="|A|" style="width: 30px"> |A| &nbsp;
+            <input type="radio" name="op" id="modB" value="|B|" style="width: 30px">|B| <br/>
+            <input type="button" name="op" id="modB" value="enter" onclick="myFunct();" style="width: 45px"><br><br>
+            <output name="result" id="res"></output>
+        </form>
+    </body>
+    <script type="text/javascript">
+      class complex{
+        constructor(a,b){
+          this.real=a;
+          this.img=b;
+        }
+        add(z){
+          let a=parseFloat(z.real)+parseFloat(this.real);
+          let b=parseFloat(z.img)+parseFloat(this.img);
+          let newNum=new complex(a,b);
+          return newNum;
+        }
+        sub(z){
+          let newNum=new complex(this.real-z.real,this.img-z.img);
+          return newNum;
+        }
+        mod(){
+          return (this.real**2+this.img**2);
+        }
+      }
+      function myFunct(){
+        let string;
+        string = document.getElementById("a").value;
+        let a=string.split(",");
+        string = document.getElementById("b").value;
+        let b=string.split(",");
+        let A=new complex(parseFloat(a[0]),parseFloat(a[1]));
+        let B=new complex(parseFloat(b[0]),parseFloat(b[1]));
+        let op;
+        let res;
+        // check for operation
+        let tmp = document.getElementsByName("op");
+        for (i = 0; i < tmp.length; i++) {
+          if (tmp[i].checked) op = tmp[i].value;
+        }
+
+        if(op=="+") {
+          tmp=A.add(B);
+          res="("+tmp.real+"+i"+tmp.img+")";
+        }
+        else if(op=="-") {
+          tmp=A.sub(B);
+          res="("+tmp.real+"+i"+tmp.img+")";
+        }
+
+        else if(op=="|A|") res=A.mod();
+        else if (op=="|B|") res=B.mod();
+        else res="NOP";
+
+        document.getElementById("res").value=res;
+        console.log(A,B,op);
+
+
+      }
+  </script>
+</html>
